@@ -29,7 +29,10 @@ jobs:
       - name: Install Python packages
         run: pipenv sync
       - name: Run repro
-        run: pipenv run python repro.py
+        run: |
+          mkdir assigned-temp
+          pwd
+          pipenv run python repro.py
         env:
           CHROMIUM_BIN: ${{ steps.setup-chrome.outputs.chrome-path }}
           CHROMEDRIVER_BIN: ${{ steps.setup-chrome.outputs.chromedriver-path }}
