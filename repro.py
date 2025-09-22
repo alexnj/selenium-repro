@@ -21,7 +21,7 @@ class ReproTest(unittest.TestCase):
         chromedriver_binary = os.getenv('CHROMEDRIVER_BIN')
 
         # Create a temp directory for user-data-dir
-        temp_dir = tempfile.mkdtemp()
+        temp_dir = "assigned-temp"
         print('--user-data-dir=%s' % temp_dir)
         print(chrome_binary)
         print(chromedriver_binary)
@@ -32,8 +32,8 @@ class ReproTest(unittest.TestCase):
             chrome_opts.add_argument('--headless=new')
             chrome_opts.add_argument('--disable-gpu')
             chrome_opts.add_argument('--verbose')
-            chrome_opts.add_argument('--no-sandbox')
-            chrome_opts.add_argument('--user-data-dir=%s' % temp_dir)
+            chrome_opts.add_argument('--no-sandbox)
+            # chrome_opts.add_argument('--user-data-dir=%s' % temp_dir)
         cls.selenium = WebDriver(options=chrome_opts, service=Service(executable_path=chromedriver_binary, service_args=['--verbose']))
         cls.selenium.implicitly_wait(9)
 
