@@ -11,10 +11,6 @@ from selenium.webdriver.chrome.webdriver import WebDriver, Service
 class ReproTest(unittest.TestCase):
 
     @classmethod
-    def CreateTempDir(self):
-        return tempfile.mkdtemp()
-
-    @classmethod
     def setUpClass(cls):
         super().setUpClass()
         # Make sure we see Selenium Manager logs as they are important for debugging
@@ -25,7 +21,7 @@ class ReproTest(unittest.TestCase):
         chromedriver_binary = os.getenv('CHROMEDRIVER_BIN')
 
         # Create a temp directory for user-data-dir
-        temp_dir = self.CreateTempDir()
+        temp_dir = tempfile.mkdtemp()
 
         if chrome_binary:
             # Set Chrome options suitable for the continuous build
