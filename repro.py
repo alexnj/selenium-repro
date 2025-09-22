@@ -33,7 +33,7 @@ class ReproTest(unittest.TestCase):
             chrome_opts.add_argument('--disable-gpu')
             chrome_opts.add_argument('--verbose')
             chrome_opts.add_argument('--no-sandbox')
-            # chrome_opts.add_argument('--user-data-dir=%s' % temp_dir)
+            chrome_opts.add_argument('--user-data-dir=%s' % temp_dir)
         cls.selenium = WebDriver(options=chrome_opts, service=Service(executable_path=chromedriver_binary, service_args=['--verbose']))
         cls.selenium.implicitly_wait(9)
 
