@@ -1,6 +1,7 @@
 import logging
 import os
 import unittest
+import tempfile
 
 from selenium.webdriver.common import selenium_manager
 from selenium.webdriver.chrome.options import Options as ChromeOptions
@@ -8,6 +9,11 @@ from selenium.webdriver.chrome.webdriver import WebDriver, Service
 
 
 class ReproTest(unittest.TestCase):
+
+    @classmethod
+    def CreateTempDir(self):
+        return tempfile.mkdtemp()
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
