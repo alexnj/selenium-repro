@@ -21,7 +21,7 @@ class ReproTest(unittest.TestCase):
         chromedriver_binary = os.getenv('CHROMEDRIVER_BIN')
 
         # Create a temp directory for user-data-dir
-        temp_dir = "/home/runner/work/selenium-repro/selenium-repro/assigned-temp"
+        temp_dir = tempfile.mkdtemp()
         print('--user-data-dir=%s' % temp_dir)
         print(chrome_binary)
         print(chromedriver_binary)
