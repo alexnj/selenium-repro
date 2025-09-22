@@ -32,6 +32,7 @@ jobs:
         run: |
           mkdir assigned-temp
           pwd
+          ls /home/runner/work/selenium-repro/selenium-repro
           pipenv run python repro.py
         env:
           CHROMIUM_BIN: ${{ steps.setup-chrome.outputs.chrome-path }}
