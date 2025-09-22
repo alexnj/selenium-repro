@@ -22,6 +22,7 @@ class ReproTest(unittest.TestCase):
 
         # Create a temp directory for user-data-dir
         temp_dir = tempfile.mkdtemp()
+        print('--user-data-dir=%s' % temp_dir)
 
         if chrome_binary:
             # Set Chrome options suitable for the continuous build
