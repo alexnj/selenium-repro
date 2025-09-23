@@ -37,4 +37,5 @@ jobs:
           CHROMIUM_BIN: ${{ steps.setup-chrome.outputs.chrome-path }}
           CHROMEDRIVER_BIN: ${{ steps.setup-chrome.outputs.chromedriver-path }}
       - name: Dump log
+        if: always()
         run: cat chrome.log
