@@ -17,19 +17,32 @@ class ReproTest(unittest.TestCase):
         chrome_opts = ChromeOptions()
         chrome_binary = os.getenv('CHROMIUM_BIN')
         chromedriver_binary = os.getenv('CHROMEDRIVER_BIN')
+        logging_prefs = {'browser': 'ALL'}
+        
         if chrome_binary:
             # Set Chrome options suitable for the continuous build
             chrome_opts.binary_location = chrome_binary
             chrome_opts.add_argument('--headless')
             chrome_opts.add_argument('--disable-gpu')
             chrome_opts.add_argument('--verbose')
-            chrome_opts.add_argument('--log-level=ALL')
-            chrome_opts.add_argument('--log-path=chrome.log')
+            chrome_opts.add_argument('--log-level=3')
+            chrome_opts.add_argument('--log-path=./chrome.log')
+            chrome_opts.set_capability('goog:loggingPrefs', logging_prefs)
         cls.selenium = WebDriver(options=chrome_opts, service=Service(executable_path=chromedriver_binary, service_args=['--verbose']))
         cls.selenium.implicitly_wait(10)
 
     @classmethod
     def tearDownClass(cls):
+        print("\n--- Retrieving Browser Console Logs ---")
+        logs = cls.selenium.get_log('browser')
+
+        if not logs:
+            print("No browser logs found.")
+        else:
+            for entry in logs:
+                # 'level' is e.g., 'SEVERE', 'WARNING', 'INFO'
+                # 'message' contains the actual log text
+                print(f"Level: {entry['level']} \nMessage: {entry['message']}\n")
         cls.selenium.quit()
         super().tearDownClass()
 
