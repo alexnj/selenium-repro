@@ -8,7 +8,6 @@ from selenium.webdriver.chrome.webdriver import WebDriver, Service
 
 
 class ReproTest(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -18,7 +17,6 @@ class ReproTest(unittest.TestCase):
         chrome_opts = ChromeOptions()
         chrome_binary = os.getenv('CHROMIUM_BIN')
         chromedriver_binary = os.getenv('CHROMEDRIVER_BIN')
-
         if chrome_binary:
             # Set Chrome options suitable for the continuous build
             chrome_opts.binary_location = chrome_binary
