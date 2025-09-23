@@ -25,7 +25,8 @@ class ReproTest(unittest.TestCase):
             chrome_opts.add_argument('--verbose')
             chrome_opts.add_argument('--log-path=./chrome.log')
             chrome_opts.add_argument('--log-level=ALL')
-        cls.selenium = WebDriver(options=chrome_opts, service=Service(executable_path=chromedriver_binary, service_args=['--verbose']))
+        service = Service(executable_path=chromedriver_binary, service_args=['--verbose'], log_output='chromedriver.log')
+        cls.selenium = WebDriver(options=chrome_opts, service=service)
         cls.selenium.implicitly_wait(10)
 
     @classmethod
