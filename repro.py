@@ -21,7 +21,6 @@ class ReproTest(unittest.TestCase):
         if chrome_binary:
             # Set Chrome options suitable for the continuous build
             chrome_opts.binary_location = chrome_binary
-            chrome_opts.add_argument('--headless')
             chrome_opts.add_argument('--disable-gpu')
             chrome_opts.add_argument('--verbose')
             chrome_opts.add_argument('--log-path=./chrome.log')
