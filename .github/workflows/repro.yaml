@@ -40,4 +40,4 @@ jobs:
         if: always()
         run: |
           find .
-          cat chrome.log
+          cat chromedriver.log
