@@ -1,7 +1,6 @@
 import logging
 import os
 import unittest
-import tempfile
 
 from selenium.webdriver.common import selenium_manager
 from selenium.webdriver.chrome.options import Options as ChromeOptions
@@ -20,22 +19,14 @@ class ReproTest(unittest.TestCase):
         chrome_binary = os.getenv('CHROMIUM_BIN')
         chromedriver_binary = os.getenv('CHROMEDRIVER_BIN')
 
-        # Create a temp directory for user-data-dir
-        temp_dir = "assigned-temp"
-        print('--user-data-dir=%s' % temp_dir)
-        print(chrome_binary)
-        print(chromedriver_binary)
-
         if chrome_binary:
             # Set Chrome options suitable for the continuous build
             chrome_opts.binary_location = chrome_binary
-            chrome_opts.add_argument('--headless=new')
+            chrome_opts.add_argument('--headless')
             chrome_opts.add_argument('--disable-gpu')
             chrome_opts.add_argument('--verbose')
-            # chrome_opts.add_argument('--no-sandbox')
-            chrome_opts.add_argument('--user-data-dir=%s' % temp_dir)
         cls.selenium = WebDriver(options=chrome_opts, service=Service(executable_path=chromedriver_binary, service_args=['--verbose']))
-        cls.selenium.implicitly_wait(9)
+        cls.selenium.implicitly_wait(10)
 
     @classmethod
     def tearDownClass(cls):
