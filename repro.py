@@ -26,8 +26,7 @@ class ReproTest(unittest.TestCase):
             chrome_opts.add_argument('--remote-debugging-pipe')
         cls.selenium = WebDriver(options=chrome_opts,
                 service = Service(executable_path=chromedriver_binary,
-                service_args=['--verbose'], log_output='chromedriver.log')
-        cls.selenium = WebDriver(options=chrome_opts, service=service)
+                service_args=['--verbose'], log_output='chromedriver.log'))
 
     @classmethod
     def tearDownClass(cls):
