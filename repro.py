@@ -23,7 +23,7 @@ class ReproTest(unittest.TestCase):
             chrome_opts.add_argument('--headless')
             chrome_opts.add_argument('--disable-gpu')
             chrome_opts.add_argument('--verbose')
-            # chrome_opts.add_argument('--remote-debugging-pipe')
+            chrome_opts.add_argument('--remote-debugging-pipe')
         service = Service(executable_path=chromedriver_binary,
                 service_args=['--verbose'], log_output='chromedriver.log')
         cls.selenium = WebDriver(options=chrome_opts, service=service)
